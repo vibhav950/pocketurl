@@ -1,0 +1,5 @@
+.env
+.vscode
+__*
+
+kubernetes/secrets

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pocketurl-config
+data:
+  DB_HOST: "mysql-service"
+  DB_USER: "pocketurl"
+  DB_NAME: "pocketurl_db"
+  DB_PORT: "3306"
+  REDIS_HOST: "redis-service"
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+  SERVICE_DOMAIN_NAME: "localhost:5000"
+  FLASK_ENV: "development"
+  PYTHONPATH: "/app"
