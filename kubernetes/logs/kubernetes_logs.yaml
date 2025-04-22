@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: display-all-logs
+spec:
+  containers:
+  - name: display-all-logs
+    image: curlimages/curl:latest
+    command: ["/bin/sh", "-c"]
+    args:
+      - |
+        POD_NAME=$(hostname);
+        while true; do
+          TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S");
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://httpbin.org/status/200);
+          if [ "$RESPONSE" -eq 200 ]; then
+            echo "$TIMESTAMP | Pod: $POD_NAME | Status: $RESPONSE | SUCCESS";
+          else
+            echo "$TIMESTAMP | Pod: $POD_NAME | Status: $RESPONSE | FAILURE";
+          fi;
+          sleep 5;
+        done
