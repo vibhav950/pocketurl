@@ -86,3 +86,9 @@ kubectl apply -f kubernetes/manifests/pocketurl-hpa.yaml
 
 echo -e "${PURPLE}Access PocketURL at:${NC}"
 minikube service pocketurl-service --url
+
+URL=$(minikube service pocketurl-service --url | tr -d '\n')
+
+kubectl patch configmap pocketurl-config --type='json' -p="[{\"op\": \"replace\", \"path\": \"/data/SERVICE_DOMAIN_NAME\", \"value\": \"$URL\"}]"
+
+kubectl rollout restart deployment/pocketurl

@@ -8,7 +8,6 @@ import os
 from redis import ConnectionPool
 
 SERVICE_DOMAIN_NAME = os.environ.get("SERVICE_DOMAIN_NAME", "localhost:5000")
-SERVICE_URL = f"http://{SERVICE_DOMAIN_NAME}"
 
 POD_NAME = os.environ.get("POD_NAME", "unknown")
 
@@ -113,7 +112,7 @@ def shorten_url():
         short_code = db.create_short_url(long_url, shortener)
 
         # construct the complete pocket url
-        short_url = f"{SERVICE_URL}/{short_code}"
+        short_url = f"{SERVICE_DOMAIN_NAME}/{short_code}"
 
         # store the short url in cache
         if redis_is_connected():

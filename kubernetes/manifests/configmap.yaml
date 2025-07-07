@@ -10,6 +10,5 @@ data:
   REDIS_HOST: "redis-service"
   REDIS_PORT: "6379"
   REDIS_DB: "0"
-  SERVICE_DOMAIN_NAME: "localhost:5000"
   FLASK_ENV: "development"
   PYTHONPATH: "/app"
